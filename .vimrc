@@ -39,12 +39,20 @@ set colorcolumn=80
 
 call plug#begin('~/.vim/vendor')
 " Coding
+Plug 'tpope/vim-rails' " Slows down opening rails files
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-commentary'
+Plug 'janko/vim-test'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Project management
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 Plug 'lambdalisue/fern.vim'
 
 " Debugger
@@ -56,6 +64,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 
 " Tools
+Plug 'vuciv/vim-bujo'
 call plug#end()
 
 let g:gruvbox_contrast_dark='soft'
@@ -82,6 +91,9 @@ let g:lightline = {
       \ },
       \ }
 
+" Vim test
+let test#strategy = "dispatch"
+
 " FZF
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
@@ -103,6 +115,16 @@ let g:fzf_branch_actions = {
       \   'confirm': v:false,
       \ },
       \}
+
+" Mapping
+
+" COC
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+command! -nargs=0 Format :call CocAction('format')
 
 " Window management
 nmap <leader>w :w!<cr>
@@ -127,11 +149,28 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
+" Utilsnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " FZF
 nnoremap <silent> <C-f> :GFiles<CR>
 
 " Prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" vim-test mappings
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+" Vim TODO
+nmap <Leader>tu <Plug>BujoChecknormal
+nmap <Leader>th <Plug>BujoAddnormal
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 " Helpers
 command! Bclose call <SID>BufcloseCloseIt()

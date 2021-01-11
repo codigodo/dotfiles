@@ -1,26 +1,17 @@
-set nocompatible
-filetype plugin indent on
-let g:mapleader=" "
-
 syntax on
-set cursorline
+
+set nocompatible
+set guicursor=a:block-Cursor
 set relativenumber
-set noerrorbells
-set timeoutlen=1000 ttimeoutlen=0
 set nohlsearch
 set hidden
-set nowritebackup
-set laststatus=2
-set noshowmode
-
-" Research this
-set expandtab
-set tabstop=2
+set noerrorbells
+set tabstop=2 softtabstop=2
 set shiftwidth=2
-set softtabstop=2
+set expandtab
+set smartindent
 set nu
 set nowrap
-set smartcase
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -28,14 +19,20 @@ set undofile
 set incsearch
 set termguicolors
 set scrolloff=8
-set completeopt=menuone,noinsert,noselect
+set noshowmode
 set signcolumn=yes
+
+" Give more space for displaying messages.
 set cmdheight=2
-set backspace=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
 set updatetime=50
+
+" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+
 set colorcolumn=80
-" End of research
 
 call plug#begin('~/.vim/vendor')
 " Coding
@@ -60,13 +57,13 @@ Plug 'puremourning/vimspector'
 
 " Visual
 Plug 'gruvbox-community/gruvbox'
-Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 
 " Tools
 Plug 'vuciv/vim-bujo'
 call plug#end()
 
+let g:mapleader=" "
 let g:gruvbox_contrast_dark='soft'
 let g:gruvbox_invert_selection='0'
 set background=dark
@@ -78,18 +75,6 @@ endif
 highlight Comment cterm=italic gui=italic
 
 " Config
-
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 
 " Vim test
 let test#strategy = "dispatch"

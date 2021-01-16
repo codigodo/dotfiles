@@ -10,7 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -24,6 +24,7 @@ Plug 'puremourning/vimspector'
 " Visual
 Plug 'gruvbox-community/gruvbox'
 Plug 'sheerun/vim-polyglot'
+Plug 'hugolgst/vimsence'
 
 " Tools
 Plug 'vuciv/vim-bujo'
@@ -34,7 +35,6 @@ call plug#end()
 let g:mapleader=" "
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>bd :Bclose<cr>
 nnoremap <leader>ba :bufdo bd<cr>
@@ -50,6 +50,9 @@ nnoremap <C-6> <C-^>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:vimsence_editing_details = '{}'
+let g:vimsence_editing_state = 'Covered in coconut oil'
 
 " Vim TODO
 nmap <Leader>tu <Plug>BujoChecknormal

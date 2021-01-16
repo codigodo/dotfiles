@@ -20,3 +20,6 @@ let g:fzf_branch_actions = {
       \}
 
 nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <Leader>pf :Files<CR>
+nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>

@@ -22,17 +22,29 @@ Plug 'lambdalisue/fern.vim'
 Plug 'puremourning/vimspector'
 
 " Visual
-Plug 'gruvbox-community/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'hugolgst/vimsence'
+Plug 'tomasr/molokai'
+Plug 'machakann/vim-highlightedyank'
 
 " Tools
 Plug 'vuciv/vim-bujo'
 call plug#end()
 
-" Config
-
 let g:mapleader=" "
+let g:highlightedyank_highlight_duration = 40
+let g:vimsence_editing_details = '{}'
+let g:vimsence_editing_state = 'Covered in coconut oil'
+
+" Utilsnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Vim TODO
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+nmap <Leader>tu <Plug>BujoChecknormal
+nmap <Leader>th <Plug>BujoAddnormal
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w!<cr>
@@ -45,23 +57,11 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <C-6> <C-^>
-
-" Utilsnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:vimsence_editing_details = '{}'
-let g:vimsence_editing_state = 'Covered in coconut oil'
-
-" Vim TODO
-nmap <Leader>tu <Plug>BujoChecknormal
-nmap <Leader>th <Plug>BujoAddnormal
-let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+inoremap <C-c> <esc>
 
 " Helpers
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
+command! Bclose call BufcloseCloseIt()
+fun! BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
     let l:alternateBufNum = bufnr("#")
 
@@ -78,4 +78,17 @@ function! <SID>BufcloseCloseIt()
     if buflisted(l:currentBufNum)
         execute("bdelete! ".l:currentBufNum)
     endif
-endfunction
+endfun
+
+fun! EmptyRegisters()
+    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+    for r in regs
+        call setreg(r, [])
+    endfor
+endfun
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun

@@ -35,13 +35,3 @@ set shortmess+=c
 set colorcolumn=80
 
 set timeoutlen=1000 ttimeoutlen=0
-
-if !has('gui_running')
-  set showmatch " Briefly jump to a paren once it's balanced
-  set matchpairs+=\<:\>
-  " With `Cursor guibg=fg guifg=bg` + default MatchParen styling, it makes the
-  " cursor seem like it has actually jumped to the patching pair. This instead
-  " makes the MatchParen style preserve the background color, so that the
-  " Cursor can flip it appropriately.
-  hi! MatchParen cterm=NONE,bold gui=NONE,bold guibg=bg guifg=lightblue ctermbg=bg ctermfg=lightblue
-endif

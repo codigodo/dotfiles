@@ -1,1 +1,1 @@
-set guifont=Menlo:h14
+set guifont=Operator\ Mono\ Lig\ Book:h15

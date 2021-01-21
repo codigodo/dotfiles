@@ -22,10 +22,19 @@ Plug 'lambdalisue/fern.vim'
 Plug 'puremourning/vimspector'
 
 " Visual
-Plug 'sheerun/vim-polyglot'
-Plug 'hugolgst/vimsence'
 Plug 'tomasr/molokai'
-Plug 'machakann/vim-highlightedyank'
+Plug 'hugolgst/vimsence'
+
+" Syntax
+Plug 'vim-ruby/vim-ruby'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'posva/vim-vue'
+Plug 'StanAngeloff/php.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Tools
 Plug 'vuciv/vim-bujo'

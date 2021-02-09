@@ -1,1 +1,1 @@
-set guifont=Operator\ Mono\ Lig\ Book:h15
+set guifont=Ubuntu\ Mono:h16

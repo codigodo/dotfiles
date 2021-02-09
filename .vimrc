@@ -9,11 +9,11 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'honza/vim-snippets'
 
 " Project management
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'rbong/vim-flog'
 Plug 'tpope/vim-dispatch'
 Plug 'lambdalisue/fern.vim'
@@ -22,12 +22,13 @@ Plug 'lambdalisue/fern.vim'
 Plug 'puremourning/vimspector'
 
 " Visual
-Plug 'tomasr/molokai'
-Plug 'hugolgst/vimsence'
+Plug 'gruvbox-community/gruvbox'
+Plug 'machakann/vim-highlightedyank'
 
 " Syntax
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
 Plug 'cakebaker/scss-syntax.vim'
@@ -35,6 +36,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'StanAngeloff/php.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Tools
 Plug 'vuciv/vim-bujo'
@@ -42,8 +44,6 @@ call plug#end()
 
 let g:mapleader=" "
 let g:highlightedyank_highlight_duration = 40
-let g:vimsence_editing_details = '{}'
-let g:vimsence_editing_state = 'Covered in coconut oil'
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -57,37 +57,18 @@ nmap <Leader>th <Plug>BujoAddnormal
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w!<cr>
-nnoremap <leader>bd :Bclose<cr>
-nnoremap <leader>ba :bufdo bd<cr>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <C-k> :bprev<CR>
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-q> :bdelete<CR>
+nnoremap <leader>ba :bufdo :bdelete<cr>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <C-6> <C-^>
 inoremap <C-c> <esc>
-
-" Helpers
-command! Bclose call BufcloseCloseIt()
-fun! BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfun
 
 fun! EmptyRegisters()
     let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')

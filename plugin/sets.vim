@@ -19,7 +19,6 @@ set undofile
 set incsearch
 set termguicolors
 set scrolloff=8
-set noshowmode
 set signcolumn=number
 
 " Give more space for displaying messages.

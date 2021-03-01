@@ -63,12 +63,33 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
-nnoremap <C-q> :bdelete<CR>
+nnoremap <C-q> :Bclose<CR>
 nnoremap <leader>ba :bufdo :bdelete<cr>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <C-6> <C-^>
 inoremap <C-c> <esc>
+
+" Helpers
+command! Bclose call BufcloseCloseIt()
+fun! BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
+
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
+endfun
 
 fun! EmptyRegisters()
     let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')

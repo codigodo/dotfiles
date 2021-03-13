@@ -20,6 +20,8 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set signcolumn=number
+set noshowmode
+set laststatus=2
 
 " Give more space for displaying messages.
 set cmdheight=2

@@ -1,3 +1,3 @@
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+nnoremap <leader>e :Fern . -drawer -toggle<CR>
 
-nnoremap <leader>pv :NvimTreeToggle<CR>
+let g:fern#renderer = "nerdfont"

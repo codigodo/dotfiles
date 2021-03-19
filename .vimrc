@@ -1,15 +1,18 @@
 call plug#begin('~/.vim/vendor')
+" LSP
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'honza/vim-snippets'
 
 " Coding
+Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-rails' " Slows down opening rails files
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'janko/vim-test'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'honza/vim-snippets'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -17,29 +20,19 @@ Plug 'junegunn/gv.vim'
 Plug 'rbong/vim-flog'
 Plug 'tpope/vim-dispatch'
 Plug 'lambdalisue/fern.vim'
+Plug 'codigodo/plaintasks.vim'
 
 " Debugger
 Plug 'puremourning/vimspector'
 
 " Visual
 Plug 'gruvbox-community/gruvbox'
+Plug 'Luxed/ayu-vim'
+Plug 'sainnhe/sonokai'
+Plug 'itchyny/lightline.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'machakann/vim-highlightedyank'
-
-" Syntax
-Plug 'vim-ruby/vim-ruby'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'othree/html5.vim'
-Plug 'elzr/vim-json'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'posva/vim-vue'
-Plug 'StanAngeloff/php.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" Tools
-Plug 'vuciv/vim-bujo'
 call plug#end()
 
 let g:mapleader=" "
@@ -50,10 +43,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Vim TODO
-let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
-nmap <Leader>tu <Plug>BujoChecknormal
-nmap <Leader>th <Plug>BujoAddnormal
+" Plaintask
+nmap <Leader>t :e ./TODO<CR>
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w!<cr>
@@ -103,3 +94,8 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
+
+command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>

@@ -4,7 +4,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'honza/vim-snippets'
 
 " Coding
-Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -12,6 +11,17 @@ Plug 'tpope/vim-rails' " Slows down opening rails files
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 Plug 'janko/vim-test'
+
+" Syntax
+Plug 'vim-ruby/vim-ruby'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'posva/vim-vue'
+Plug 'StanAngeloff/php.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Project management

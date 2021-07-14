@@ -16,13 +16,18 @@ Plug 'janko/vim-test'
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'leafgarland/typescript-vim'
 Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug 'StanAngeloff/php.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'digitaltoad/vim-pug'
+Plug 'jparise/vim-graphql'
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -30,15 +35,14 @@ Plug 'junegunn/gv.vim'
 Plug 'rbong/vim-flog'
 Plug 'tpope/vim-dispatch'
 Plug 'lambdalisue/fern.vim'
-Plug 'codigodo/plaintasks.vim'
 
 " Debugger
 Plug 'puremourning/vimspector'
 
 " Visual
 Plug 'gruvbox-community/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'Luxed/ayu-vim'
-Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -52,9 +56,6 @@ let g:highlightedyank_highlight_duration = 40
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Plaintask
-nmap <Leader>t :e ./TODO<CR>
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>w :w!<cr>
@@ -70,6 +71,7 @@ nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <C-6> <C-^>
 inoremap <C-c> <esc>
+noremap <C-y> "+y
 
 " Helpers
 command! Bclose call BufcloseCloseIt()
@@ -109,3 +111,4 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
+
